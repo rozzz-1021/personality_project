@@ -1,0 +1,118 @@
+# Personality Data Analysis Project
+
+## Introduction
+
+This project explores a personality dataset to analyze the relationship between social behaviors, personality types, and social network size. Methods include EDA, regression modeling, K-means clustering, logistic regression, and decision tree analysis.
+
+---
+
+## Data Preparation
+
+* Missing numerical values imputed using median.
+* Categorical missing values replaced with "Unknown."
+* Variables converted to appropriate data types (factor/numeric).
+
+---
+
+## Exploratory Data Analysis (EDA)
+
+### Personality Type Distribution
+
+* Nearly balanced distribution of extroverts and introverts.
+* Extroverts tend to spend less time alone and attend more social events.
+
+### Social Event Attendance & Feeling Drained
+
+* Individuals who feel drained after events attend fewer social events.
+* Those who do not feel drained are more socially active, suggesting self-selection or energy regulation.
+
+---
+
+## Regression Analysis
+
+### Model 1: Personality Only
+
+* Introverts have \~5.8 fewer friends than extroverts.
+* Adjusted R²: 0.47.
+
+### Model 2: Personality + Time Spent Alone
+
+* Introvert status reduces friend circle size by \~3.2.
+* Each extra hour spent alone reduces friends by \~0.53.
+* Adjusted R²: 0.56.
+
+### Model 3: Personality + Drained After Socializing + Time Spent Alone
+
+* Best performance with Adjusted R²: 0.67.
+* All parameters are statistically significant.
+
+#### Model Comparison
+
+| Model   | Adj. R² | AIC   | BIC   |
+| ------- | ------- | ----- | ----- |
+| Model 1 | 0.47    | 14763 | 14781 |
+| Model 2 | 0.56    | 13972 | 13996 |
+| Model 3 | 0.67    | 13437 | 13473 |
+
+### Interaction Effect
+
+* Tested interaction between personality and alone time.
+* Did not outperform Model 3.
+
+---
+
+## Backtesting
+
+* Model 3 evaluated using 80/20 train-test split.
+* RMSE: 2.37.
+
+---
+
+## Logistic Regression
+
+* Predict personality type using social event attendance, friend circle size, and time spent alone.
+* Accuracy: 0.94.
+
+---
+
+## K-means Clustering
+
+* 3 clusters identified using K-means with PCA for visualization.
+* Cluster sizes: 731, 1441, 728.
+* Cluster 2 stands out; Clusters 1 and 3 overlap.
+
+### Cluster Summary
+
+* Cluster 2: higher alone time, smaller friend circles.
+
+---
+
+## Decision Tree Analysis
+
+* Primary split: social event attendance ≥ 4.
+* Secondary split for low attendance: time spent alone.
+* High event attendance group predominantly extroverts; high alone time group predominantly introverts.
+
+---
+
+## Conclusion
+
+Social behaviors like time spent alone and social event attendance are strong predictors of personality type and friend network size. Model 3 provides the best regression fit, and logistic regression further supports these insights with high accuracy.
+
+---
+
+## Next Steps
+
+* Explore non-linear models or ensemble methods.
+* Further examine overlapping clusters using silhouette scores.
+* Consider additional behavioral or psychological variables.
+
+---
+
+## Files Included
+
+* Data cleaning and EDA scripts.
+* Regression and model comparison scripts.
+* K-means clustering and visualization.
+* Logistic regression and decision tree scripts.
+* Plots and tables for all results.
